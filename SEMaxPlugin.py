@@ -37,17 +37,17 @@ def LoadSEAnimMakeKeys(filepath=""):
     # Load a seanim file using seanim api
     print("Loading SEAnim file...")
     # Load the file using helper lib
-	anim = SEAnim.Anim(filepath)
+    anim = SEAnim.Anim(filepath)
     # Starting frame
-	start_frame = 0
+    start_frame = 0
 	# End frame
-	end_frame = anim.header.frameCount - 1
+    end_frame = anim.header.frameCount - 1
     # Set scene start and end
     newRange = MaxPlus.Interval((start_frame * MAX_TICKS), (end_frame * MAX_TICKS))
     # Set it
     MaxPlus.Animation.SetRange(newRange)
     # Loop through bones
-	for bone in anim.bones:
+    for bone in anim.bones:
         # TODO: Parent modifiers
         BoneAnimType = anim.header.animType
         # Fetch this bone in the scene, if it exists
@@ -59,7 +59,7 @@ def LoadSEAnimMakeKeys(filepath=""):
             # Skip
             continue
         # Reset rotation values
-		if len(bone.rotKeys) > 0:
+        if len(bone.rotKeys) > 0:
             # Reset rotation to 0, 0, 0 (SetLocalRotation(...??))
             print "TODO"
         # Grab the bone rest transform
@@ -75,7 +75,7 @@ def LoadSEAnimMakeKeys(filepath=""):
                 # Set the current scene time
                 MaxPlus.Animation.SetTime(key.frame * MAX_TICKS)
                 # Check animation type to see what data we need
-				if BoneAnimType == SEAnim.SEANIM_TYPE.SEANIM_TYPE_ABSOLUTE:
+                if BoneAnimType == SEAnim.SEANIM_TYPE.SEANIM_TYPE_ABSOLUTE:
                     # Add absolute keyframe
                     print "TODO"
                 else:
